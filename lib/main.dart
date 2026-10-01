@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'charts_flutter_screen.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(home: ChartsFlutterScreen()));
 }
 
 class MyApp extends StatelessWidget {
