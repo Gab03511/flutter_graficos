@@ -85,12 +85,16 @@ class _Tarjeta extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 520),
+        constraints: const BoxConstraints(maxWidth: 540),
         child: Card(
-          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          elevation: 3,
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          elevation: 4,
           clipBehavior: Clip.antiAlias,
-          child: SizedBox(height: 440, child: grafica),
+          child: Container(
+            height: 440,
+            padding: const EdgeInsets.all(12.0),
+            child: Center(child: grafica),
+          ),
         ),
       ),
     );

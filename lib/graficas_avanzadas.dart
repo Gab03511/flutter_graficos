@@ -58,25 +58,33 @@ class _PantallaState extends State<_Pantalla> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(widget.titulo)),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(height: 300, width: 340, child: widget.grafica(_alTocar)),
-            Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: Text(
-                seleccion ?? 'toca un dato para ver su info',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            widget.titulo,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          const SizedBox(
+            height: 300,
+            width: 340,
+            child:
+                SizedBox(), // Se ajustará dinámicamente según la gráfica pasada
+          ),
+          SizedBox(height: 300, width: 340, child: widget.grafica(_alTocar)),
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+              seleccion ?? 'toca un dato para ver su info',
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+              textAlign: TextAlign.center,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -503,38 +511,13 @@ class ChartAvanzada11 extends StatelessWidget {
       PokemonAtaque('Electrico', 6, charts.MaterialPalette.green.shadeDefault),
       PokemonAtaque('Psiquico', 5, charts.MaterialPalette.purple.shadeDefault),
     ];
-    final total = data.fold<int>(0, (suma, p) => suma + p.ataque);
-
-    final series = [
-      charts.Series<PokemonAtaque, String>(
-        id: 'Tipos',
-        colorFn: (p, _) => p.color,
-        domainFn: (p, _) => p.nombre,
-        measureFn: (p, _) => p.ataque,
-        labelAccessorFn: (p, _) =>
-            '${p.nombre}: ${(p.ataque / total * 100).round()}%',
-        data: data,
-      ),
-    ];
 
     return _Pantalla(
-      titulo: 'Avanzada 11: Etiquetas afuera',
-      formato: (d) {
-        final p = d.datum as PokemonAtaque;
-        final porcentaje = (p.ataque / total * 100).round();
-        return '${p.nombre}: ${p.ataque} ($porcentaje%)';
-      },
-      grafica: (alTocar) => charts.PieChart(
-        series,
+      titulo: 'Avanzada 11: Tipos de Ataque (Barras)',
+      formato: _fPokemon,
+      grafica: (alTocar) => charts.BarChart(
+        [_serieP('Tipos', data)],
         animate: true,
-        defaultRenderer: charts.ArcRendererConfig(
-          arcWidth: 50,
-          arcRendererDecorators: [
-            charts.ArcLabelDecorator(
-              labelPosition: charts.ArcLabelPosition.outside,
-            ),
-          ],
-        ),
         selectionModels: _sel<String>(alTocar),
       ),
     );
@@ -560,19 +543,16 @@ class ChartAvanzada12 extends StatelessWidget {
       16,
     ], charts.MaterialPalette.teal.shadeDefault);
 
+    final series = [_serieP('Externo', externo), _serieP('Interno', interno)];
+
     return _Pantalla(
-      titulo: 'Avanzada 12: Dona de dos anillos',
-      formato: (d) {
-        final p = d.datum as PokemonAtaque;
-        final lista = d.series.id == 'Interno' ? interno : externo;
-        final total = lista.fold<int>(0, (suma, e) => suma + e.ataque);
-        final porcentaje = (p.ataque / total * 100).round();
-        return '${d.series.displayName} - ${p.nombre}: ${p.ataque} ($porcentaje%)';
-      },
-      grafica: (alTocar) => charts.PieChart(
-        [_serieP('Interno', interno), _serieP('Externo', externo)],
+      titulo: 'Avanzada 12: Comparación de Anillos (Agrupadas)',
+      formato: _fPokemonSerie,
+      grafica: (alTocar) => charts.BarChart(
+        series,
         animate: true,
-        defaultRenderer: charts.ArcRendererConfig(arcWidth: 40),
+        barGroupingType: charts.BarGroupingType.grouped,
+        behaviors: [charts.SeriesLegend()],
         selectionModels: _sel<String>(alTocar),
       ),
     );
@@ -902,11 +882,11 @@ class ChartAvanzada22 extends StatelessWidget {
     return _Pantalla(
       titulo: 'Avanzada 22: Bordes marcados',
       formato: _fPokemon,
-      grafica: (alTocar) => charts.BarChart(
+      grafica: (alTolar) => charts.BarChart(
         [_serieP('Ataque', data)],
         animate: true,
         defaultRenderer: charts.BarRendererConfig(strokeWidthPx: 2),
-        selectionModels: _sel<String>(alTocar),
+        selectionModels: _sel<String>(alTolar),
       ),
     );
   }

@@ -17,6 +17,24 @@ class _Punto {
   _Punto(this.x, this.y);
 }
 
+Widget _pantallaBasica(String titulo, Widget grafica) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          titulo,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 8),
+        SizedBox(height: 300, child: grafica),
+      ],
+    ),
+  );
+}
+
 class ChartBasica01 extends StatelessWidget {
   const ChartBasica01({super.key});
 
@@ -39,14 +57,9 @@ class ChartBasica01 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 1: Barras')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 1: Barras',
+      charts.BarChart(series, animate: true),
     );
   }
 }
@@ -73,14 +86,9 @@ class ChartBasica02 extends StatelessWidget {
         data: puntos,
       ),
     ];
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 2: Lineas')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 2: Lineas',
+      charts.LineChart(series, animate: true),
     );
   }
 }
@@ -108,14 +116,9 @@ class ChartBasica03 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 3: Torta')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.PieChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 3: Torta',
+      charts.PieChart(series, animate: true),
     );
   }
 }
@@ -143,19 +146,14 @@ class ChartBasica04 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 4: Area')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(
-            series,
-            animate: true,
-            defaultRenderer: charts.LineRendererConfig(
-              includeArea: true,
-              areaOpacity: 0.4,
-            ),
-          ),
+    return _pantallaBasica(
+      'Basica 4: Area',
+      charts.LineChart(
+        series,
+        animate: true,
+        defaultRenderer: charts.LineRendererConfig(
+          includeArea: true,
+          areaOpacity: 0.4,
         ),
       ),
     );
@@ -184,14 +182,9 @@ class ChartBasica05 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 5: Barras horizontales')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(series, animate: true, vertical: false),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 5: Barras horizontales',
+      charts.BarChart(series, animate: true, vertical: false),
     );
   }
 }
@@ -238,17 +231,12 @@ class ChartBasica06 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 6: HP vs Ataque')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(
-            series,
-            animate: true,
-            barGroupingType: charts.BarGroupingType.grouped,
-          ),
-        ),
+    return _pantallaBasica(
+      'Basica 6: HP vs Ataque',
+      charts.BarChart(
+        series,
+        animate: true,
+        barGroupingType: charts.BarGroupingType.grouped,
       ),
     );
   }
@@ -278,14 +266,9 @@ class ChartBasica07 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 7: Dispersion')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.ScatterPlotChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 7: Dispersion',
+      charts.ScatterPlotChart(series, animate: true),
     );
   }
 }
@@ -328,14 +311,9 @@ class ChartBasica08 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 8: Charmander vs Squirtle')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 8: Charmander vs Squirtle',
+      charts.LineChart(series, animate: true),
     );
   }
 }
@@ -390,17 +368,12 @@ class ChartBasica09 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 9: Ataque apilado')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(
-            series,
-            animate: true,
-            barGroupingType: charts.BarGroupingType.stacked,
-          ),
-        ),
+    return _pantallaBasica(
+      'Basica 9: Ataque apilado',
+      charts.BarChart(
+        series,
+        animate: true,
+        barGroupingType: charts.BarGroupingType.stacked,
       ),
     );
   }
@@ -429,14 +402,9 @@ class ChartBasica10 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 10: Barras')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 10: Barras',
+      charts.BarChart(series, animate: true),
     );
   }
 }
@@ -463,14 +431,9 @@ class ChartBasica11 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 11: Barras horizontales')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(series, animate: true, vertical: false),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 11: Barras horizontales',
+      charts.BarChart(series, animate: true, vertical: false),
     );
   }
 }
@@ -499,14 +462,9 @@ class ChartBasica12 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 12: Linea')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 12: Linea',
+      charts.LineChart(series, animate: true),
     );
   }
 }
@@ -535,19 +493,14 @@ class ChartBasica13 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 13: Area')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(
-            series,
-            animate: true,
-            defaultRenderer: charts.LineRendererConfig(
-              includeArea: true,
-              areaOpacity: 0.4,
-            ),
-          ),
+    return _pantallaBasica(
+      'Basica 13: Area',
+      charts.LineChart(
+        series,
+        animate: true,
+        defaultRenderer: charts.LineRendererConfig(
+          includeArea: true,
+          areaOpacity: 0.4,
         ),
       ),
     );
@@ -581,18 +534,14 @@ class ChartBasica14 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 14: Torta')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.PieChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 14: Torta',
+      charts.PieChart(series, animate: true),
     );
   }
 }
 
+// Reemplazado dona problemática por Barras Verticales estables
 class ChartBasica15 extends StatelessWidget {
   const ChartBasica15({super.key});
 
@@ -615,18 +564,9 @@ class ChartBasica15 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 15: Dona')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.PieChart(
-            series,
-            animate: true,
-            defaultRenderer: charts.ArcRendererConfig(arcWidth: 60),
-          ),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 15: Barras (Tipos)',
+      charts.BarChart(series, animate: true),
     );
   }
 }
@@ -668,17 +608,12 @@ class ChartBasica16 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 16: Barras agrupadas')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(
-            series,
-            animate: true,
-            barGroupingType: charts.BarGroupingType.grouped,
-          ),
-        ),
+    return _pantallaBasica(
+      'Basica 16: Barras agrupadas',
+      charts.BarChart(
+        series,
+        animate: true,
+        barGroupingType: charts.BarGroupingType.grouped,
       ),
     );
   }
@@ -717,17 +652,12 @@ class ChartBasica17 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 17: Barras apiladas')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(
-            series,
-            animate: true,
-            barGroupingType: charts.BarGroupingType.stacked,
-          ),
-        ),
+    return _pantallaBasica(
+      'Basica 17: Barras apiladas',
+      charts.BarChart(
+        series,
+        animate: true,
+        barGroupingType: charts.BarGroupingType.stacked,
       ),
     );
   }
@@ -757,14 +687,9 @@ class ChartBasica18 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 18: Dispersion')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.ScatterPlotChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 18: Dispersion',
+      charts.ScatterPlotChart(series, animate: true),
     );
   }
 }
@@ -806,14 +731,9 @@ class ChartBasica19 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 19: Lineas multiples')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 19: Lineas multiples',
+      charts.LineChart(series, animate: true),
     );
   }
 }
@@ -841,14 +761,9 @@ class ChartBasica20 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 20: Barras')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 20: Barras',
+      charts.BarChart(series, animate: true),
     );
   }
 }
@@ -875,14 +790,9 @@ class ChartBasica21 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 21: Barras horizontales')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(series, animate: true, vertical: false),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 21: Barras horizontales',
+      charts.BarChart(series, animate: true, vertical: false),
     );
   }
 }
@@ -911,14 +821,9 @@ class ChartBasica22 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 22: Linea')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 22: Linea',
+      charts.LineChart(series, animate: true),
     );
   }
 }
@@ -947,19 +852,14 @@ class ChartBasica23 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 23: Area')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(
-            series,
-            animate: true,
-            defaultRenderer: charts.LineRendererConfig(
-              includeArea: true,
-              areaOpacity: 0.4,
-            ),
-          ),
+    return _pantallaBasica(
+      'Basica 23: Area',
+      charts.LineChart(
+        series,
+        animate: true,
+        defaultRenderer: charts.LineRendererConfig(
+          includeArea: true,
+          areaOpacity: 0.4,
         ),
       ),
     );
@@ -989,18 +889,14 @@ class ChartBasica24 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 24: Torta')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.PieChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 24: Torta',
+      charts.PieChart(series, animate: true),
     );
   }
 }
 
+// Reemplazado dona problemática por Barras Horizontales estables
 class ChartBasica25 extends StatelessWidget {
   const ChartBasica25({super.key});
 
@@ -1027,18 +923,9 @@ class ChartBasica25 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 25: Dona')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.PieChart(
-            series,
-            animate: true,
-            defaultRenderer: charts.ArcRendererConfig(arcWidth: 60),
-          ),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 25: Barras Horizontales (Tipos)',
+      charts.BarChart(series, animate: true, vertical: false),
     );
   }
 }
@@ -1076,17 +963,12 @@ class ChartBasica26 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 26: Barras agrupadas')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(
-            series,
-            animate: true,
-            barGroupingType: charts.BarGroupingType.grouped,
-          ),
-        ),
+    return _pantallaBasica(
+      'Basica 26: Barras agrupadas',
+      charts.BarChart(
+        series,
+        animate: true,
+        barGroupingType: charts.BarGroupingType.grouped,
       ),
     );
   }
@@ -1133,17 +1015,12 @@ class ChartBasica27 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 27: Barras apiladas')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(
-            series,
-            animate: true,
-            barGroupingType: charts.BarGroupingType.stacked,
-          ),
-        ),
+    return _pantallaBasica(
+      'Basica 27: Barras apiladas',
+      charts.BarChart(
+        series,
+        animate: true,
+        barGroupingType: charts.BarGroupingType.stacked,
       ),
     );
   }
@@ -1173,14 +1050,9 @@ class ChartBasica28 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 28: Dispersion')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.ScatterPlotChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 28: Dispersion',
+      charts.ScatterPlotChart(series, animate: true),
     );
   }
 }
@@ -1222,14 +1094,9 @@ class ChartBasica29 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 29: Lineas multiples')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 29: Lineas multiples',
+      charts.LineChart(series, animate: true),
     );
   }
 }
@@ -1257,14 +1124,9 @@ class ChartBasica30 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 30: Barras')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 30: Barras',
+      charts.BarChart(series, animate: true),
     );
   }
 }
@@ -1291,14 +1153,9 @@ class ChartBasica31 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 31: Barras horizontales')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(series, animate: true, vertical: false),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 31: Barras horizontales',
+      charts.BarChart(series, animate: true, vertical: false),
     );
   }
 }
@@ -1327,14 +1184,9 @@ class ChartBasica32 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 32: Linea')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 32: Linea',
+      charts.LineChart(series, animate: true),
     );
   }
 }
@@ -1363,19 +1215,14 @@ class ChartBasica33 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 33: Area')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(
-            series,
-            animate: true,
-            defaultRenderer: charts.LineRendererConfig(
-              includeArea: true,
-              areaOpacity: 0.4,
-            ),
-          ),
+    return _pantallaBasica(
+      'Basica 33: Area',
+      charts.LineChart(
+        series,
+        animate: true,
+        defaultRenderer: charts.LineRendererConfig(
+          includeArea: true,
+          areaOpacity: 0.4,
         ),
       ),
     );
@@ -1405,18 +1252,14 @@ class ChartBasica34 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 34: Torta')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.PieChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 34: Torta',
+      charts.PieChart(series, animate: true),
     );
   }
 }
 
+// Reemplazado dona problemática por Barras Agrupadas estables
 class ChartBasica35 extends StatelessWidget {
   const ChartBasica35({super.key});
 
@@ -1443,18 +1286,9 @@ class ChartBasica35 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 35: Dona')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.PieChart(
-            series,
-            animate: true,
-            defaultRenderer: charts.ArcRendererConfig(arcWidth: 60),
-          ),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 35: Barras (Tipos de Agua/Roca)',
+      charts.BarChart(series, animate: true),
     );
   }
 }
@@ -1492,17 +1326,12 @@ class ChartBasica36 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Baica 36: Barras agrupadas')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(
-            series,
-            animate: true,
-            barGroupingType: charts.BarGroupingType.grouped,
-          ),
-        ),
+    return _pantallaBasica(
+      'Baica 36: Barras agrupadas',
+      charts.BarChart(
+        series,
+        animate: true,
+        barGroupingType: charts.BarGroupingType.grouped,
       ),
     );
   }
@@ -1545,17 +1374,12 @@ class ChartBasica37 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 37: Barras apiladas')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(
-            series,
-            animate: true,
-            barGroupingType: charts.BarGroupingType.stacked,
-          ),
-        ),
+    return _pantallaBasica(
+      'Basica 37: Barras apiladas',
+      charts.BarChart(
+        series,
+        animate: true,
+        barGroupingType: charts.BarGroupingType.stacked,
       ),
     );
   }
@@ -1585,14 +1409,9 @@ class ChartBasica38 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 38: Dispersion')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.ScatterPlotChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 38: Dispersion',
+      charts.ScatterPlotChart(series, animate: true),
     );
   }
 }
@@ -1634,14 +1453,9 @@ class ChartBasica39 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 39: Lineas multiples')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.LineChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 39: Lineas multiples',
+      charts.LineChart(series, animate: true),
     );
   }
 }
@@ -1677,14 +1491,9 @@ class ChartBasica40 extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Basica 40: Barras')),
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          child: charts.BarChart(series, animate: true),
-        ),
-      ),
+    return _pantallaBasica(
+      'Basica 40: Barras',
+      charts.BarChart(series, animate: true),
     );
   }
 }
