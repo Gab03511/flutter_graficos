@@ -1,6 +1,5 @@
 import 'package:community_charts_flutter/community_charts_flutter.dart'
     as charts;
-
 import 'package:flutter/material.dart';
 
 class PokemonAtaque {
@@ -9,6 +8,13 @@ class PokemonAtaque {
   final charts.Color color;
 
   PokemonAtaque(this.nombre, this.ataque, this.color);
+}
+
+class _Punto {
+  final int x;
+  final int y;
+
+  _Punto(this.x, this.y);
 }
 
 class ChartBasica01 extends StatelessWidget {
@@ -34,7 +40,7 @@ class ChartBasica01 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Gráfica de Ataques Pokémon')),
+      appBar: AppBar(title: const Text('Basica 1: Barras')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -68,6 +74,7 @@ class ChartBasica02 extends StatelessWidget {
       ),
     ];
     return Scaffold(
+      appBar: AppBar(title: const Text('Basica 2: Lineas')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -76,13 +83,6 @@ class ChartBasica02 extends StatelessWidget {
       ),
     );
   }
-}
-
-class _Punto {
-  final int x;
-  final int y;
-
-  _Punto(this.x, this.y);
 }
 
 class ChartBasica03 extends StatelessWidget {
@@ -109,7 +109,7 @@ class ChartBasica03 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Gráfica de Ataques Pokémon')),
+      appBar: AppBar(title: const Text('Basica 3: Torta')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -144,7 +144,7 @@ class ChartBasica04 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Gráfica de Ataques Pokémon')),
+      appBar: AppBar(title: const Text('Basica 4: Area')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -153,7 +153,7 @@ class ChartBasica04 extends StatelessWidget {
             animate: true,
             defaultRenderer: charts.LineRendererConfig(
               includeArea: true,
-              areaOpacity: 0.2,
+              areaOpacity: 0.4,
             ),
           ),
         ),
@@ -177,15 +177,15 @@ class ChartBasica05 extends StatelessWidget {
     final series = [
       charts.Series<PokemonAtaque, String>(
         id: 'Ataques',
-        colorFn: (PokemonAtaque ataque, _) => ataque.color,
-        domainFn: (PokemonAtaque ataque, _) => ataque.nombre,
-        measureFn: (PokemonAtaque ataque, _) => ataque.ataque,
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
         data: data,
       ),
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Gráfica de Ataques Pokémon')),
+      appBar: AppBar(title: const Text('Basica 5: Barras horizontales')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -203,34 +203,43 @@ class ChartBasica06 extends StatelessWidget {
   Widget build(BuildContext context) {
     final hp = [
       PokemonAtaque('Pikachu', 35, charts.MaterialPalette.yellow.shadeDefault),
-      PokemonAtaque('Charizard', 78, charts.MaterialPalette.red.shadeDefault),
-      PokemonAtaque('Bulbasaur', 45, charts.MaterialPalette.green.shadeDefault),
+      PokemonAtaque(
+        'Charizard',
+        78,
+        charts.MaterialPalette.yellow.shadeDefault,
+      ),
+      PokemonAtaque(
+        'Bulbasaur',
+        45,
+        charts.MaterialPalette.yellow.shadeDefault,
+      ),
     ];
+
     final ataque = [
-      PokemonAtaque('Pikachu', 55, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque('Pikachu', 55, charts.MaterialPalette.red.shadeDefault),
       PokemonAtaque('Charizard', 84, charts.MaterialPalette.red.shadeDefault),
-      PokemonAtaque('Bulbasaur', 49, charts.MaterialPalette.green.shadeDefault),
+      PokemonAtaque('Bulbasaur', 49, charts.MaterialPalette.red.shadeDefault),
     ];
 
     final series = [
       charts.Series<PokemonAtaque, String>(
-        id: 'hp',
-        colorFn: (PokemonAtaque ataque, _) => ataque.color,
-        domainFn: (PokemonAtaque ataque, _) => ataque.nombre,
-        measureFn: (PokemonAtaque ataque, _) => ataque.ataque,
+        id: 'HP',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
         data: hp,
       ),
       charts.Series<PokemonAtaque, String>(
-        id: 'ataque',
-        colorFn: (PokemonAtaque ataque, _) => ataque.color,
-        domainFn: (PokemonAtaque ataque, _) => ataque.nombre,
-        measureFn: (PokemonAtaque ataque, _) => ataque.ataque,
+        id: 'Ataque',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
         data: ataque,
       ),
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Gráfica de Ataques Pokémon')),
+      appBar: AppBar(title: const Text('Basica 6: HP vs Ataque')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -270,7 +279,7 @@ class ChartBasica07 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 7: Dispersión')),
+      appBar: AppBar(title: const Text('Basica 7: Dispersion')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -320,7 +329,7 @@ class ChartBasica08 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 8: Charmander vs Squirtle')),
+      appBar: AppBar(title: const Text('Basica 8: Charmander vs Squirtle')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -366,7 +375,7 @@ class ChartBasica09 extends StatelessWidget {
 
     final series = [
       charts.Series<PokemonAtaque, String>(
-        id: 'Físico',
+        id: 'Fisico',
         colorFn: (p, _) => p.color,
         domainFn: (p, _) => p.nombre,
         measureFn: (p, _) => p.ataque,
@@ -382,7 +391,7 @@ class ChartBasica09 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 9: Ataque total apilado')),
+      appBar: AppBar(title: const Text('Basica 9: Ataque apilado')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -403,10 +412,10 @@ class ChartBasica10 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = [
-      PokemonAtaque('Eevee', 65, charts.MaterialPalette.blue.shadeDefault),
-      PokemonAtaque('Snorlax', 110, charts.MaterialPalette.blue.shadeDefault),
-      PokemonAtaque('Gengar', 65, charts.MaterialPalette.blue.shadeDefault),
-      PokemonAtaque('Machamp', 130, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Gyarados', 31, charts.MaterialPalette.lime.shadeDefault),
+      PokemonAtaque('Dragonite', 90, charts.MaterialPalette.lime.shadeDefault),
+      PokemonAtaque('Mewtwo', 44, charts.MaterialPalette.lime.shadeDefault),
+      PokemonAtaque('Lapras', 80, charts.MaterialPalette.lime.shadeDefault),
     ];
 
     final series = [
@@ -421,7 +430,7 @@ class ChartBasica10 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 10: Barras')),
+      appBar: AppBar(title: const Text('Basica 10: Barras')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -438,10 +447,10 @@ class ChartBasica11 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = [
-      PokemonAtaque('Alakazam', 95, charts.MaterialPalette.red.shadeDefault),
-      PokemonAtaque('Gyarados', 70, charts.MaterialPalette.red.shadeDefault),
-      PokemonAtaque('Dragonite', 100, charts.MaterialPalette.red.shadeDefault),
-      PokemonAtaque('Mewtwo', 90, charts.MaterialPalette.red.shadeDefault),
+      PokemonAtaque('Flareon', 100, charts.MaterialPalette.red.shadeDefault),
+      PokemonAtaque('Onix', 72, charts.MaterialPalette.red.shadeDefault),
+      PokemonAtaque('Rapidash', 46, charts.MaterialPalette.red.shadeDefault),
+      PokemonAtaque('Arcanine', 73, charts.MaterialPalette.red.shadeDefault),
     ];
 
     final series = [
@@ -455,7 +464,7 @@ class ChartBasica11 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 11: Barras horizontales')),
+      appBar: AppBar(title: const Text('Basica 11: Barras horizontales')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -472,18 +481,18 @@ class ChartBasica12 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final puntos = [
-      _Punto(1, 55),
-      _Punto(2, 60),
-      _Punto(3, 48),
-      _Punto(4, 72),
-      _Punto(5, 65),
-      _Punto(6, 80),
+      _Punto(1, 83),
+      _Punto(2, 43),
+      _Punto(3, 91),
+      _Punto(4, 47),
+      _Punto(5, 61),
+      _Punto(6, 57),
     ];
 
     final series = [
       charts.Series<_Punto, int>(
         id: 'Datos',
-        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
+        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
         domainFn: (p, _) => p.x,
         measureFn: (p, _) => p.y,
         data: puntos,
@@ -491,7 +500,7 @@ class ChartBasica12 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 12: Línea')),
+      appBar: AppBar(title: const Text('Basica 12: Linea')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -508,12 +517,12 @@ class ChartBasica13 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final puntos = [
-      _Punto(1, 25),
-      _Punto(2, 45),
-      _Punto(3, 38),
-      _Punto(4, 60),
-      _Punto(5, 85),
-      _Punto(6, 95),
+      _Punto(1, 29),
+      _Punto(2, 34),
+      _Punto(3, 72),
+      _Punto(4, 79),
+      _Punto(5, 73),
+      _Punto(6, 54),
     ];
 
     final series = [
@@ -527,7 +536,7 @@ class ChartBasica13 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 13: Área')),
+      appBar: AppBar(title: const Text('Basica 13: Area')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -551,10 +560,14 @@ class ChartBasica14 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = [
-      PokemonAtaque('Volador', 7, charts.MaterialPalette.cyan.shadeDefault),
-      PokemonAtaque('Veneno', 5, charts.MaterialPalette.purple.shadeDefault),
-      PokemonAtaque('Roca', 4, charts.MaterialPalette.deepOrange.shadeDefault),
-      PokemonAtaque('Hielo', 3, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Tierra', 9, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque('Fuego', 9, charts.MaterialPalette.green.shadeDefault),
+      PokemonAtaque('Siniestro', 6, charts.MaterialPalette.purple.shadeDefault),
+      PokemonAtaque(
+        'Hielo',
+        12,
+        charts.MaterialPalette.deepOrange.shadeDefault,
+      ),
     ];
 
     final series = [
@@ -569,7 +582,7 @@ class ChartBasica14 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 14: Torta')),
+      appBar: AppBar(title: const Text('Basica 14: Torta')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -586,10 +599,10 @@ class ChartBasica15 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = [
-      PokemonAtaque('Dragón', 6, charts.MaterialPalette.indigo.shadeDefault),
-      PokemonAtaque('Fantasma', 8, charts.MaterialPalette.purple.shadeDefault),
-      PokemonAtaque('Siniestro', 5, charts.MaterialPalette.blue.shadeDefault),
-      PokemonAtaque('Normal', 9, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque('Fuego', 6, charts.MaterialPalette.indigo.shadeDefault),
+      PokemonAtaque('Siniestro', 12, charts.MaterialPalette.pink.shadeDefault),
+      PokemonAtaque('Hielo', 12, charts.MaterialPalette.cyan.shadeDefault),
+      PokemonAtaque('Volador', 9, charts.MaterialPalette.lime.shadeDefault),
     ];
 
     final series = [
@@ -603,7 +616,7 @@ class ChartBasica15 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 15: Dona')),
+      appBar: AppBar(title: const Text('Basica 15: Dona')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -624,26 +637,18 @@ class ChartBasica16 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serieA = [
-      PokemonAtaque('Lapras', 50, charts.MaterialPalette.blue.shadeDefault),
-      PokemonAtaque('Vaporeon', 65, charts.MaterialPalette.blue.shadeDefault),
-      PokemonAtaque('Jolteon', 45, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Golduck', 56, charts.MaterialPalette.purple.shadeDefault),
+      PokemonAtaque('Poliwag', 48, charts.MaterialPalette.purple.shadeDefault),
+      PokemonAtaque(
+        'Tentacool',
+        48,
+        charts.MaterialPalette.purple.shadeDefault,
+      ),
     ];
     final serieB = [
-      PokemonAtaque(
-        'Lapras',
-        70,
-        charts.MaterialPalette.deepOrange.shadeDefault,
-      ),
-      PokemonAtaque(
-        'Vaporeon',
-        55,
-        charts.MaterialPalette.deepOrange.shadeDefault,
-      ),
-      PokemonAtaque(
-        'Jolteon',
-        80,
-        charts.MaterialPalette.deepOrange.shadeDefault,
-      ),
+      PokemonAtaque('Golduck', 34, charts.MaterialPalette.lime.shadeDefault),
+      PokemonAtaque('Poliwag', 49, charts.MaterialPalette.lime.shadeDefault),
+      PokemonAtaque('Tentacool', 57, charts.MaterialPalette.lime.shadeDefault),
     ];
 
     final series = [
@@ -664,7 +669,7 @@ class ChartBasica16 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 16: Barras agrupadas')),
+      appBar: AppBar(title: const Text('Basica 16: Barras agrupadas')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -685,14 +690,14 @@ class ChartBasica17 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serieA = [
-      PokemonAtaque('Onix', 30, charts.MaterialPalette.green.shadeDefault),
-      PokemonAtaque('Rapidash', 45, charts.MaterialPalette.green.shadeDefault),
-      PokemonAtaque('Arcanine', 55, charts.MaterialPalette.green.shadeDefault),
+      PokemonAtaque('Doduo', 40, charts.MaterialPalette.teal.shadeDefault),
+      PokemonAtaque('Seel', 52, charts.MaterialPalette.teal.shadeDefault),
+      PokemonAtaque('Grimer', 59, charts.MaterialPalette.teal.shadeDefault),
     ];
     final serieB = [
-      PokemonAtaque('Onix', 40, charts.MaterialPalette.yellow.shadeDefault),
-      PokemonAtaque('Rapidash', 35, charts.MaterialPalette.yellow.shadeDefault),
-      PokemonAtaque('Arcanine', 50, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque('Doduo', 24, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Seel', 70, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Grimer', 58, charts.MaterialPalette.blue.shadeDefault),
     ];
 
     final series = [
@@ -713,7 +718,7 @@ class ChartBasica17 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 17: Barras apiladas')),
+      appBar: AppBar(title: const Text('Basica 17: Barras apiladas')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -734,18 +739,18 @@ class ChartBasica18 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final puntos = [
-      _Punto(2, 40),
-      _Punto(5, 60),
-      _Punto(8, 35),
-      _Punto(11, 75),
-      _Punto(14, 50),
-      _Punto(17, 90),
+      _Punto(3, 63),
+      _Punto(6, 64),
+      _Punto(9, 67),
+      _Punto(12, 99),
+      _Punto(15, 67),
+      _Punto(18, 35),
     ];
 
     final series = [
       charts.Series<_Punto, int>(
         id: 'Datos',
-        colorFn: (_, __) => charts.MaterialPalette.pink.shadeDefault,
+        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
         domainFn: (p, _) => p.x,
         measureFn: (p, _) => p.y,
         data: puntos,
@@ -753,7 +758,7 @@ class ChartBasica18 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 18: Dispersión')),
+      appBar: AppBar(title: const Text('Basica 18: Dispersion')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -770,31 +775,31 @@ class ChartBasica19 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serieA = [
-      _Punto(1, 42),
-      _Punto(2, 58),
-      _Punto(3, 50),
-      _Punto(4, 70),
-      _Punto(5, 65),
+      _Punto(1, 56),
+      _Punto(2, 45),
+      _Punto(3, 34),
+      _Punto(4, 88),
+      _Punto(5, 34),
     ];
     final serieB = [
-      _Punto(1, 35),
-      _Punto(2, 45),
-      _Punto(3, 60),
-      _Punto(4, 55),
-      _Punto(5, 80),
+      _Punto(1, 96),
+      _Punto(2, 89),
+      _Punto(3, 58),
+      _Punto(4, 21),
+      _Punto(5, 35),
     ];
 
     final series = [
       charts.Series<_Punto, int>(
-        id: 'Snorlax',
-        colorFn: (_, __) => charts.MaterialPalette.teal.shadeDefault,
+        id: 'Cubone',
+        colorFn: (_, __) => charts.MaterialPalette.cyan.shadeDefault,
         domainFn: (p, _) => p.x,
         measureFn: (p, _) => p.y,
         data: serieA,
       ),
       charts.Series<_Punto, int>(
-        id: 'Gengar',
-        colorFn: (_, __) => charts.MaterialPalette.indigo.shadeDefault,
+        id: 'Hitmonlee',
+        colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
         domainFn: (p, _) => p.x,
         measureFn: (p, _) => p.y,
         data: serieB,
@@ -802,7 +807,7 @@ class ChartBasica19 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 19: Líneas múltiples')),
+      appBar: AppBar(title: const Text('Basica 19: Lineas multiples')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -819,26 +824,10 @@ class ChartBasica20 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = [
-      PokemonAtaque(
-        'Ninetales',
-        76,
-        charts.MaterialPalette.deepOrange.shadeDefault,
-      ),
-      PokemonAtaque(
-        'Vulpix',
-        41,
-        charts.MaterialPalette.deepOrange.shadeDefault,
-      ),
-      PokemonAtaque(
-        'Growlithe',
-        70,
-        charts.MaterialPalette.deepOrange.shadeDefault,
-      ),
-      PokemonAtaque(
-        'Rapidash',
-        100,
-        charts.MaterialPalette.deepOrange.shadeDefault,
-      ),
+      PokemonAtaque('Ninetales', 93, charts.MaterialPalette.pink.shadeDefault),
+      PokemonAtaque('Vulpix', 53, charts.MaterialPalette.pink.shadeDefault),
+      PokemonAtaque('Growlithe', 101, charts.MaterialPalette.pink.shadeDefault),
+      PokemonAtaque('Psyduck', 57, charts.MaterialPalette.pink.shadeDefault),
     ];
 
     final series = [
@@ -853,7 +842,7 @@ class ChartBasica20 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 20: Barras')),
+      appBar: AppBar(title: const Text('Basica 20: Barras')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -870,14 +859,10 @@ class ChartBasica21 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = [
-      PokemonAtaque('Psyduck', 52, charts.MaterialPalette.yellow.shadeDefault),
-      PokemonAtaque('Golduck', 82, charts.MaterialPalette.yellow.shadeDefault),
-      PokemonAtaque('Poliwag', 40, charts.MaterialPalette.yellow.shadeDefault),
-      PokemonAtaque(
-        'Tentacool',
-        40,
-        charts.MaterialPalette.yellow.shadeDefault,
-      ),
+      PokemonAtaque('Tentacool', 83, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Geodude', 66, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Magnemite', 66, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Doduo', 95, charts.MaterialPalette.blue.shadeDefault),
     ];
 
     final series = [
@@ -891,7 +876,7 @@ class ChartBasica21 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 21: Barras horizontales')),
+      appBar: AppBar(title: const Text('Basica 21: Barras horizontales')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -908,18 +893,18 @@ class ChartBasica22 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final puntos = [
-      _Punto(1, 48),
-      _Punto(2, 52),
-      _Punto(3, 70),
-      _Punto(4, 65),
-      _Punto(5, 90),
-      _Punto(6, 85),
+      _Punto(1, 47),
+      _Punto(2, 60),
+      _Punto(3, 83),
+      _Punto(4, 44),
+      _Punto(5, 70),
+      _Punto(6, 73),
     ];
 
     final series = [
       charts.Series<_Punto, int>(
         id: 'Datos',
-        colorFn: (_, __) => charts.MaterialPalette.cyan.shadeDefault,
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (p, _) => p.x,
         measureFn: (p, _) => p.y,
         data: puntos,
@@ -927,7 +912,7 @@ class ChartBasica22 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 22: Línea')),
+      appBar: AppBar(title: const Text('Basica 22: Linea')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -944,18 +929,18 @@ class ChartBasica23 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final puntos = [
-      _Punto(1, 30),
-      _Punto(2, 55),
-      _Punto(3, 40),
-      _Punto(4, 68),
-      _Punto(5, 75),
-      _Punto(6, 95),
+      _Punto(1, 50),
+      _Punto(2, 43),
+      _Punto(3, 41),
+      _Punto(4, 46),
+      _Punto(5, 71),
+      _Punto(6, 40),
     ];
 
     final series = [
       charts.Series<_Punto, int>(
         id: 'Datos',
-        colorFn: (_, __) => charts.MaterialPalette.indigo.shadeDefault,
+        colorFn: (_, __) => charts.MaterialPalette.yellow.shadeDefault,
         domainFn: (p, _) => p.x,
         measureFn: (p, _) => p.y,
         data: puntos,
@@ -963,7 +948,7 @@ class ChartBasica23 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 23: Área')),
+      appBar: AppBar(title: const Text('Basica 23: Area')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -987,14 +972,10 @@ class ChartBasica24 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = [
-      PokemonAtaque('Eléctrico', 9, charts.MaterialPalette.yellow.shadeDefault),
-      PokemonAtaque(
-        'Tierra',
-        6,
-        charts.MaterialPalette.deepOrange.shadeDefault,
-      ),
-      PokemonAtaque('Roca', 5, charts.MaterialPalette.green.shadeDefault),
-      PokemonAtaque('Hielo', 4, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Siniestro', 7, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Electrico', 11, charts.MaterialPalette.red.shadeDefault),
+      PokemonAtaque('Fantasma', 12, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque('Planta', 5, charts.MaterialPalette.green.shadeDefault),
     ];
 
     final series = [
@@ -1009,7 +990,7 @@ class ChartBasica24 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 24: Torta')),
+      appBar: AppBar(title: const Text('Basica 24: Torta')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -1026,10 +1007,14 @@ class ChartBasica25 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = [
-      PokemonAtaque('Normal', 10, charts.MaterialPalette.gray.shadeDefault),
-      PokemonAtaque('Fantasma', 6, charts.MaterialPalette.purple.shadeDefault),
-      PokemonAtaque('Volador', 7, charts.MaterialPalette.cyan.shadeDefault),
-      PokemonAtaque('Veneno', 5, charts.MaterialPalette.green.shadeDefault),
+      PokemonAtaque(
+        'Dragon',
+        6,
+        charts.MaterialPalette.deepOrange.shadeDefault,
+      ),
+      PokemonAtaque('Agua', 10, charts.MaterialPalette.teal.shadeDefault),
+      PokemonAtaque('Tierra', 9, charts.MaterialPalette.indigo.shadeDefault),
+      PokemonAtaque('Normal', 12, charts.MaterialPalette.pink.shadeDefault),
     ];
 
     final series = [
@@ -1043,7 +1028,7 @@ class ChartBasica25 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 25: Dona')),
+      appBar: AppBar(title: const Text('Basica 25: Dona')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -1064,14 +1049,14 @@ class ChartBasica26 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serieA = [
-      PokemonAtaque('Geodude', 40, charts.MaterialPalette.blue.shadeDefault),
-      PokemonAtaque('Magnemite', 55, charts.MaterialPalette.blue.shadeDefault),
-      PokemonAtaque('Doduo', 48, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Haunter', 86, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque('Drowzee', 67, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque('Krabby', 52, charts.MaterialPalette.yellow.shadeDefault),
     ];
     final serieB = [
-      PokemonAtaque('Geodude', 35, charts.MaterialPalette.red.shadeDefault),
-      PokemonAtaque('Magnemite', 60, charts.MaterialPalette.red.shadeDefault),
-      PokemonAtaque('Doduo', 45, charts.MaterialPalette.red.shadeDefault),
+      PokemonAtaque('Haunter', 75, charts.MaterialPalette.pink.shadeDefault),
+      PokemonAtaque('Drowzee', 87, charts.MaterialPalette.pink.shadeDefault),
+      PokemonAtaque('Krabby', 60, charts.MaterialPalette.pink.shadeDefault),
     ];
 
     final series = [
@@ -1092,7 +1077,7 @@ class ChartBasica26 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 26: Barras agrupadas')),
+      appBar: AppBar(title: const Text('Basica 26: Barras agrupadas')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -1113,14 +1098,22 @@ class ChartBasica27 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serieA = [
-      PokemonAtaque('Seel', 30, charts.MaterialPalette.teal.shadeDefault),
-      PokemonAtaque('Grimer', 50, charts.MaterialPalette.teal.shadeDefault),
-      PokemonAtaque('Shellder', 38, charts.MaterialPalette.teal.shadeDefault),
+      PokemonAtaque('Cubone', 33, charts.MaterialPalette.purple.shadeDefault),
+      PokemonAtaque(
+        'Hitmonlee',
+        40,
+        charts.MaterialPalette.purple.shadeDefault,
+      ),
+      PokemonAtaque(
+        'Lickitung',
+        51,
+        charts.MaterialPalette.purple.shadeDefault,
+      ),
     ];
     final serieB = [
-      PokemonAtaque('Seel', 25, charts.MaterialPalette.purple.shadeDefault),
-      PokemonAtaque('Grimer', 40, charts.MaterialPalette.purple.shadeDefault),
-      PokemonAtaque('Shellder', 55, charts.MaterialPalette.purple.shadeDefault),
+      PokemonAtaque('Cubone', 50, charts.MaterialPalette.lime.shadeDefault),
+      PokemonAtaque('Hitmonlee', 62, charts.MaterialPalette.lime.shadeDefault),
+      PokemonAtaque('Lickitung', 57, charts.MaterialPalette.lime.shadeDefault),
     ];
 
     final series = [
@@ -1141,7 +1134,7 @@ class ChartBasica27 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 27: Barras apiladas')),
+      appBar: AppBar(title: const Text('Basica 27: Barras apiladas')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -1162,18 +1155,18 @@ class ChartBasica28 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final puntos = [
-      _Punto(3, 25),
-      _Punto(6, 50),
-      _Punto(9, 38),
-      _Punto(12, 70),
-      _Punto(15, 55),
-      _Punto(18, 85),
+      _Punto(4, 20),
+      _Punto(7, 56),
+      _Punto(10, 28),
+      _Punto(13, 24),
+      _Punto(16, 81),
+      _Punto(19, 66),
     ];
 
     final series = [
       charts.Series<_Punto, int>(
         id: 'Datos',
-        colorFn: (_, __) => charts.MaterialPalette.lime.shadeDefault,
+        colorFn: (_, __) => charts.MaterialPalette.cyan.shadeDefault,
         domainFn: (p, _) => p.x,
         measureFn: (p, _) => p.y,
         data: puntos,
@@ -1181,7 +1174,7 @@ class ChartBasica28 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 28: Dispersión')),
+      appBar: AppBar(title: const Text('Basica 28: Dispersion')),
       body: Center(
         child: SizedBox(
           height: 300,
@@ -1198,30 +1191,442 @@ class ChartBasica29 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final serieA = [
-      _Punto(1, 45),
-      _Punto(2, 60),
-      _Punto(3, 55),
-      _Punto(4, 75),
-      _Punto(5, 70),
+      _Punto(1, 76),
+      _Punto(2, 50),
+      _Punto(3, 26),
+      _Punto(4, 93),
+      _Punto(5, 84),
     ];
     final serieB = [
-      _Punto(1, 38),
-      _Punto(2, 50),
-      _Punto(3, 65),
-      _Punto(4, 60),
-      _Punto(5, 85),
+      _Punto(1, 23),
+      _Punto(2, 27),
+      _Punto(3, 48),
+      _Punto(4, 34),
+      _Punto(5, 69),
     ];
 
     final series = [
       charts.Series<_Punto, int>(
-        id: 'Haunter',
+        id: 'Staryu',
+        colorFn: (_, __) => charts.MaterialPalette.indigo.shadeDefault,
+        domainFn: (p, _) => p.x,
+        measureFn: (p, _) => p.y,
+        data: serieA,
+      ),
+      charts.Series<_Punto, int>(
+        id: 'Pikachu',
+        colorFn: (_, __) => charts.MaterialPalette.red.shadeDefault,
+        domainFn: (p, _) => p.x,
+        measureFn: (p, _) => p.y,
+        data: serieB,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 29: Lineas multiples')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.LineChart(series, animate: true),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica30 extends StatelessWidget {
+  const ChartBasica30({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final data = [
+      PokemonAtaque('Seel', 40, charts.MaterialPalette.teal.shadeDefault),
+      PokemonAtaque('Grimer', 105, charts.MaterialPalette.teal.shadeDefault),
+      PokemonAtaque('Shellder', 52, charts.MaterialPalette.teal.shadeDefault),
+      PokemonAtaque('Gastly', 50, charts.MaterialPalette.teal.shadeDefault),
+    ];
+
+    final series = [
+      charts.Series<PokemonAtaque, String>(
+        id: 'Datos',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
+        labelAccessorFn: (p, _) => '${p.ataque}',
+        data: data,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 30: Barras')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.BarChart(series, animate: true),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica31 extends StatelessWidget {
+  const ChartBasica31({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final data = [
+      PokemonAtaque('Krabby', 98, charts.MaterialPalette.cyan.shadeDefault),
+      PokemonAtaque('Voltorb', 95, charts.MaterialPalette.cyan.shadeDefault),
+      PokemonAtaque('Exeggcute', 99, charts.MaterialPalette.cyan.shadeDefault),
+      PokemonAtaque('Cubone', 46, charts.MaterialPalette.cyan.shadeDefault),
+    ];
+
+    final series = [
+      charts.Series<PokemonAtaque, String>(
+        id: 'Datos',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
+        data: data,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 31: Barras horizontales')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.BarChart(series, animate: true, vertical: false),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica32 extends StatelessWidget {
+  const ChartBasica32({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final puntos = [
+      _Punto(1, 86),
+      _Punto(2, 46),
+      _Punto(3, 90),
+      _Punto(4, 41),
+      _Punto(5, 49),
+      _Punto(6, 95),
+    ];
+
+    final series = [
+      charts.Series<_Punto, int>(
+        id: 'Datos',
+        colorFn: (_, __) => charts.MaterialPalette.cyan.shadeDefault,
+        domainFn: (p, _) => p.x,
+        measureFn: (p, _) => p.y,
+        data: puntos,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 32: Linea')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.LineChart(series, animate: true),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica33 extends StatelessWidget {
+  const ChartBasica33({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final puntos = [
+      _Punto(1, 49),
+      _Punto(2, 31),
+      _Punto(3, 62),
+      _Punto(4, 74),
+      _Punto(5, 61),
+      _Punto(6, 30),
+    ];
+
+    final series = [
+      charts.Series<_Punto, int>(
+        id: 'Datos',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (p, _) => p.x,
+        measureFn: (p, _) => p.y,
+        data: puntos,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 33: Area')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.LineChart(
+            series,
+            animate: true,
+            defaultRenderer: charts.LineRendererConfig(
+              includeArea: true,
+              areaOpacity: 0.4,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica34 extends StatelessWidget {
+  const ChartBasica34({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final data = [
+      PokemonAtaque('Volador', 4, charts.MaterialPalette.lime.shadeDefault),
+      PokemonAtaque('Roca', 6, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque('Electrico', 5, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Psiquico', 9, charts.MaterialPalette.red.shadeDefault),
+    ];
+
+    final series = [
+      charts.Series<PokemonAtaque, String>(
+        id: 'Datos',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
+        labelAccessorFn: (p, _) => '${p.nombre}: ${p.ataque}',
+        data: data,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 34: Torta')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.PieChart(series, animate: true),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica35 extends StatelessWidget {
+  const ChartBasica35({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final data = [
+      PokemonAtaque('Agua', 10, charts.MaterialPalette.green.shadeDefault),
+      PokemonAtaque('Veneno', 8, charts.MaterialPalette.purple.shadeDefault),
+      PokemonAtaque(
+        'Volador',
+        3,
+        charts.MaterialPalette.deepOrange.shadeDefault,
+      ),
+      PokemonAtaque('Roca', 8, charts.MaterialPalette.teal.shadeDefault),
+    ];
+
+    final series = [
+      charts.Series<PokemonAtaque, String>(
+        id: 'Datos',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
+        data: data,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 35: Dona')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.PieChart(
+            series,
+            animate: true,
+            defaultRenderer: charts.ArcRendererConfig(arcWidth: 60),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica36 extends StatelessWidget {
+  const ChartBasica36({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final serieA = [
+      PokemonAtaque('Chansey', 85, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Tangela', 78, charts.MaterialPalette.blue.shadeDefault),
+      PokemonAtaque('Kangaskhan', 81, charts.MaterialPalette.blue.shadeDefault),
+    ];
+    final serieB = [
+      PokemonAtaque('Chansey', 38, charts.MaterialPalette.teal.shadeDefault),
+      PokemonAtaque('Tangela', 38, charts.MaterialPalette.teal.shadeDefault),
+      PokemonAtaque('Kangaskhan', 69, charts.MaterialPalette.teal.shadeDefault),
+    ];
+
+    final series = [
+      charts.Series<PokemonAtaque, String>(
+        id: 'Serie A',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
+        data: serieA,
+      ),
+      charts.Series<PokemonAtaque, String>(
+        id: 'Serie B',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
+        data: serieB,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Baica 36: Barras agrupadas')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.BarChart(
+            series,
+            animate: true,
+            barGroupingType: charts.BarGroupingType.grouped,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica37 extends StatelessWidget {
+  const ChartBasica37({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final serieA = [
+      PokemonAtaque('Staryu', 65, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque('Pikachu', 46, charts.MaterialPalette.yellow.shadeDefault),
+      PokemonAtaque(
+        'Charizard',
+        65,
+        charts.MaterialPalette.yellow.shadeDefault,
+      ),
+    ];
+    final serieB = [
+      PokemonAtaque('Staryu', 68, charts.MaterialPalette.pink.shadeDefault),
+      PokemonAtaque('Pikachu', 45, charts.MaterialPalette.pink.shadeDefault),
+      PokemonAtaque('Charizard', 60, charts.MaterialPalette.pink.shadeDefault),
+    ];
+
+    final series = [
+      charts.Series<PokemonAtaque, String>(
+        id: 'Serie A',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
+        data: serieA,
+      ),
+      charts.Series<PokemonAtaque, String>(
+        id: 'Serie B',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
+        data: serieB,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 37: Barras apiladas')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.BarChart(
+            series,
+            animate: true,
+            barGroupingType: charts.BarGroupingType.stacked,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica38 extends StatelessWidget {
+  const ChartBasica38({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final puntos = [
+      _Punto(5, 100),
+      _Punto(8, 40),
+      _Punto(11, 77),
+      _Punto(14, 53),
+      _Punto(17, 81),
+      _Punto(20, 34),
+    ];
+
+    final series = [
+      charts.Series<_Punto, int>(
+        id: 'Datos',
+        colorFn: (_, __) => charts.MaterialPalette.indigo.shadeDefault,
+        domainFn: (p, _) => p.x,
+        measureFn: (p, _) => p.y,
+        data: puntos,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 38: Dispersion')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.ScatterPlotChart(series, animate: true),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica39 extends StatelessWidget {
+  const ChartBasica39({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final serieA = [
+      _Punto(1, 64),
+      _Punto(2, 85),
+      _Punto(3, 24),
+      _Punto(4, 51),
+      _Punto(5, 29),
+    ];
+    final serieB = [
+      _Punto(1, 67),
+      _Punto(2, 83),
+      _Punto(3, 65),
+      _Punto(4, 30),
+      _Punto(5, 68),
+    ];
+
+    final series = [
+      charts.Series<_Punto, int>(
+        id: 'Alakazam',
         colorFn: (_, __) => charts.MaterialPalette.deepOrange.shadeDefault,
         domainFn: (p, _) => p.x,
         measureFn: (p, _) => p.y,
         data: serieA,
       ),
       charts.Series<_Punto, int>(
-        id: 'Krabby',
+        id: 'Gyarados',
         colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
         domainFn: (p, _) => p.x,
         measureFn: (p, _) => p.y,
@@ -1230,11 +1635,54 @@ class ChartBasica29 extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Básica 29: Líneas múltiples')),
+      appBar: AppBar(title: const Text('Basica 39: Lineas multiples')),
       body: Center(
         child: SizedBox(
           height: 300,
           child: charts.LineChart(series, animate: true),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartBasica40 extends StatelessWidget {
+  const ChartBasica40({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final data = [
+      PokemonAtaque(
+        'Hitmonlee',
+        41,
+        charts.MaterialPalette.purple.shadeDefault,
+      ),
+      PokemonAtaque(
+        'Lickitung',
+        57,
+        charts.MaterialPalette.purple.shadeDefault,
+      ),
+      PokemonAtaque('Koffing', 104, charts.MaterialPalette.purple.shadeDefault),
+      PokemonAtaque('Rhyhorn', 80, charts.MaterialPalette.purple.shadeDefault),
+    ];
+
+    final series = [
+      charts.Series<PokemonAtaque, String>(
+        id: 'Datos',
+        colorFn: (p, _) => p.color,
+        domainFn: (p, _) => p.nombre,
+        measureFn: (p, _) => p.ataque,
+        labelAccessorFn: (p, _) => '${p.ataque}',
+        data: data,
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Basica 40: Barras')),
+      body: Center(
+        child: SizedBox(
+          height: 300,
+          child: charts.BarChart(series, animate: true),
         ),
       ),
     );
